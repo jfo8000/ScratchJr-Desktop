@@ -1,0 +1,161 @@
+@import url('../../css/font.css');
+
+html {
+    -webkit-user-select: none;
+}
+
+#inappBlocksGuide {
+    background: #F7F6EE;
+     margin-top: 102px;
+    margin-bottom: 100px;
+}
+
+#inappBlocksGuide .block-category-header {
+    color: white;
+    text-transform: uppercase;
+    padding-left: ${css_vh(2.47)};
+    padding-top: ${css_vh(1.64)};
+    padding-bottom: ${css_vh(1.64)};
+   margin-left: ${css_vh(15.95)};
+  
+    margin-top: ${css_vh(9.87)};
+
+    width: ${css_vh(46.18)};
+    font-size: ${css_vh(2.75)};
+}
+
+#inappBlocksGuide .content-container {
+	padding-bottom: 200px;
+}
+
+#inappBlocksGuide .block-description-table {
+	margin-left: ${css_vh(15.95)};
+}
+
+#inappBlocksGuide .block-description-table td {
+	vertical-align: top;
+	padding-left: 20px;
+	padding-bottom: 20px;
+}
+
+#inappBlocksGuide #yellow-block-category-header {
+    background-color: #F4E025;
+}
+
+#inappBlocksGuide #blue-block-category-header {
+    background-color: #4A8CE3;
+}
+
+#inappBlocksGuide #purple-block-category-header {
+    background-color: #CD7CD1;
+}
+
+#inappBlocksGuide #green-block-category-header {
+    background-color: #48CC7E;
+}
+
+#inappBlocksGuide #orange-block-category-header {
+    background-color: #FFB254;
+}
+
+#inappBlocksGuide #red-block-category-header {
+    background-color: #EA2424;
+}
+
+#inappBlocksGuide .block-category-header-line {
+    margin-left: ${css_vh(15.95)};
+    margin-right: ${css_vh(15.95)};
+    height: ${css_vh(0.33)};
+}
+
+#inappBlocksGuide #yellow-block-category-header-line {
+    background-color: #F4E025;
+}
+
+#inappBlocksGuide #blue-block-category-header-line {
+    background-color: #4A8CE3;
+}
+
+#inappBlocksGuide #purple-block-category-header-line {
+    background-color: #CD7CD1;
+}
+
+#inappBlocksGuide #green-block-category-header-line {
+    background-color: #48CC7E;
+}
+
+#inappBlocksGuide #orange-block-category-header-line {
+    background-color: #FFB254;
+}
+
+#inappBlocksGuide #red-block-category-header-line {
+    background-color: #EA2424;
+}
+
+/*
+#inappBlocksGuide  .block-wrapper {
+    margin-top: ${css_vh(2.96)};
+    margin-left: ${css_vh(15.95)};
+    margin-right: ${css_vh(15.95)};
+    height: ${css_vh(23.03)};
+    color: #808080;
+    margin-bottom: ${css_vh(3.29)};
+}
+
+
+#inappBlocksGuide .block-wrapper-left{
+    float: left;
+    width: 40%;
+    padding-bottom: ${css_vh(1.64)};
+}
+
+#inappBlocksGuide .block-wrapper-right {
+    float: right;
+    width: 40%;
+    padding-bottom: ${css_vh(1.64)};
+}
+
+#inappBlocksGuide .block-image-wrapper {
+    float: left;
+}
+*/
+
+#inappBlocksGuide .block-title {
+    font-size: ${css_vh(2.5)};
+    border-bottom: 1px solid #BFBFBF;
+    padding-bottom: ${css_vh(0.99)};
+    margin-top: 20px;
+    margin-right: 20px;
+    
+}
+
+#inappBlocksGuide .block-image {
+    margin-top: ${css_vh(3.29)};
+    margin-left: ${css_vh(1.64)};
+    width: ${css_vh(12.34)};
+}
+
+
+#inappBlocksGuide .block-image-repeat {
+    margin-top: ${css_vh(3.29)};
+    margin-left: ${css_vh(1.64)};
+    width: ${css_vh(23.03)};
+}
+
+
+#inappBlocksGuide .block-description {
+    margin-top: ${css_vh(3.29)};
+    width: ${css_vh(34.54)};
+    font-size: ${css_vh(2.30)};
+    color: #6F6F6E;
+    line-height: ${css_vh(3.62)};
+}
+
+
+#inappBlocksGuide .block-description-repeat {
+    margin-top: ${css_vh(3.29)};
+    width: ${css_vh(23.85)};
+    font-size: ${css_vh(2.30)};
+    line-height: ${css_vh(3.62)};
+     color: #6F6F6E;
+}
