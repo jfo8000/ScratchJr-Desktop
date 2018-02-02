@@ -42,8 +42,8 @@ module.exports = {
 	electronInstallerDebian: {},
 	electronInstallerRedhat: {},
 	github_repository: {
-		"owner": "",
-		"name": ""
+		"owner": "jfo8000",
+		"name": "ScratchJr-Desktop"
 	},
 	windowsStoreConfig: {
 		"packageName": "",
