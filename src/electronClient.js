@@ -479,6 +479,7 @@ class AudioCapture {
     		throw (new Error('Recording audio is turned off'));
     	}
     
+    	this.chunks = null;
         this.currentStream = stream;
         this.mediaRecorder = new MediaRecorder(stream);
         this.mediaRecorder.ondataavailable = this.onRecordData.bind(this);

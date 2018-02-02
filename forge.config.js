@@ -6,6 +6,9 @@ let iconFile;
 let platform = os.platform();
 
 const iconFileWindows = path.resolve(__dirname,  "src/icons/win/icon.ico");
+const installerGifWindows = path.resolve(__dirname,  "src/icons/win/installerGif.gif");
+
+
 const iconFileMac = path.resolve(__dirname,  "src/icons/mac/icon.icns");
 if (platform === 'darwin') {
     iconFile = iconFileMac;
@@ -46,6 +49,7 @@ module.exports = {
 	},
 	electronWinstallerConfig: {
 		"name": "ScratchJr",
+		loadingGif: installerGifWindows,
 	    iconUrl: iconFileWindows,
 	    exe: 'ScratchJr.exe',
 	    setupIcon: iconFileWindows
