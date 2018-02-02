@@ -29,4 +29,4 @@ install:
 
 script:
 - npm run lint
-- if test -z "$TRAVIS_TAG"; then npm run make; fi
+- if test -z "$TRAVIS_TAG"; then npm run publish; fi

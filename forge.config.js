@@ -28,6 +28,17 @@ module.exports = {
 		  "rpm"
 		]
 	},
+	publishTargets: {	
+      "win32": [
+        "github"
+      ],
+      "darwin": [
+        "github"
+      ],
+      "linux": [
+        "github"
+      ]
+	},
 	electronPackagerConfig: {
 		packageManager: "npm",
 		appCopyright: "Copyright (c) 2016, MIT",
