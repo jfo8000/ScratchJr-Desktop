@@ -139,6 +139,7 @@ app.on('ready', () => {
 		  label: 'File',
 		  submenu: [
 				{ label: 'Restore projects', click: dataStore.restoreProjects.bind(dataStore) },
+				{ role: 'toggledevtools' },
 				{ type: 'separator' },
 				{ role: 'quit' },
 		  ],
@@ -148,6 +149,7 @@ app.on('ready', () => {
       {
 		  label: 'File',
 		  submenu: [
+		  		{ role: 'toggledevtools' },
 				{ role: 'quit' },
 		  ],
 		}];
