@@ -21,4 +21,3 @@ test_script:
 - npm --version
 - npm run lint
 - if %APPVEYOR_REPO_TAG% EQU false npm run publish
-
