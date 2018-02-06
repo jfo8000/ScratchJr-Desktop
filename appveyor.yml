@@ -6,6 +6,8 @@ cache:
 - '%APPDATA%\npm-cache'
 - '%USERPROFILE%\.electron'
 - node_modules
+deploy:
+    force_update: true
 branches:
   only:
   - master
