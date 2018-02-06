@@ -10,6 +10,9 @@ branches:
   only:
   - master
   - /^v\d+\.\d+\.\d+/
+  
+artifacts:
+   - path: out
 install:
 - ps: Install-Product node $env:nodejs_version $env:platform
 - set PATH=%APPDATA%\npm;%PATH%
