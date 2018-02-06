@@ -7,12 +7,7 @@ cache:
 - '%USERPROFILE%\.electron'
 - node_modules
 deploy:
-- provider: GitHub
-  draft: true
-  prerelease: true
-  force_update: true
-  on:
-    branch: master
+    force_update: true
 branches:
   only:
   - master
