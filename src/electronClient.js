@@ -47,12 +47,13 @@ function debugLog(...args) {
     		hasCapturedErrors = true;
     		
     		// install an error event handler to capture unhandled messages
-    		window.addEventListener("error", function (e) {
-			  	ipcRenderer.send('debugWriteLog', args);
-			})
+    		window.addEventListener('error', function (e) {
+			  	ipcRenderer.send('debugWriteLog', e);
+			});
     	}
     	return ipcRenderer.send('debugWriteLog', args);
     }
+    return true;
 }
 debugLog('electronClient debugLog enabled =======================');
 

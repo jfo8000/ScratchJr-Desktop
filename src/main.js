@@ -26,8 +26,9 @@ const util = require('util');
 
 const crypto = require('crypto');
 
+let isDev =  require('electron-is-dev');
 
-const isDev = require('electron-is-dev');
+isDev = (isDev) || process.env.DEBUG_SCRATCHJR;
 
 
 /* eslint-disable import/extensions */  // --> OFF
@@ -44,7 +45,7 @@ const { app, dialog, BrowserWindow, BrowserView, ipcMain, Menu } = require('elec
 
 
 
-const DEBUG =  true//isDev;
+const DEBUG =  isDev;
 const DEBUG_DATABASE      = DEBUG && false;
 const DEBUG_FILEIO        = DEBUG && true;
 const DEBUG_RESOURCEIO    = DEBUG && false;
@@ -70,7 +71,7 @@ process.on('uncaughtException', (err) => {
   process.exit();
 });
 process.on('unhandledRejection', (reason, p) => {
-  debugLog('unhandledRejection', err);
+  debugLog('unhandledRejection', reason, p);
   process.exit();
 });
 
@@ -959,13 +960,14 @@ class DatabaseManager {
 
 }
 
-var logFile = fs.createWriteStream(path.join( ScratchJRDataStore.getScratchJRFolder(), 'debug.log'), { flags: 'a' });
+var logFile = fs.createWriteStream(path.join(ScratchJRDataStore.getScratchJRFolder(), 'debug.log'), { flags: 'a' });
   // Or 'w' to truncate the file every time the process starts.
 var logStdout = process.stdout;
 
-console.log = function () {
-  logFile.write(util.format.apply(null, arguments) + '\n');
-  logStdout.write(util.format.apply(null, arguments) + '\n');
-}
-console.error = console.log;
+console.log = function () {  // eslint-disable-line no-console
+  logFile.write(util.format.apply(null, arguments) + '\n'); // eslint-disable-line prefer-rest-params
+  logStdout.write(util.format.apply(null, arguments) + '\n'); // eslint-disable-line prefer-rest-params
+};
+
+console.error = console.log;  // eslint-disable-line no-console
 
