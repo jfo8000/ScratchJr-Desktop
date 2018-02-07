@@ -19,11 +19,12 @@
 // not very complex.
 
 const path = require('path');
+const process = require('process');
 const url = require('url');
 const fs = require('fs');
+const util = require('util');
 
 const crypto = require('crypto');
-const SQL = require('sql.js');
 
 
 const isDev = require('electron-is-dev');
@@ -35,14 +36,17 @@ const isDev = require('electron-is-dev');
 
 const { app, dialog, BrowserWindow, BrowserView, ipcMain, Menu } = require('electron');  
 
+
+
 /* eslint-enable import/extensions */  // --> ON
 /* eslint-enable import/no-extraneous-dependencies */  // --> ON
 /* eslint-enable import/no-unresolved  */  // --> ON
 
 
-const DEBUG = isDev;
+
+const DEBUG =  true//isDev;
 const DEBUG_DATABASE      = DEBUG && false;
-const DEBUG_FILEIO        = DEBUG && false;
+const DEBUG_FILEIO        = DEBUG && true;
 const DEBUG_RESOURCEIO    = DEBUG && false;
 const DEBUG_CLEANASSETS   = DEBUG && false;
 const DEBUG_NYI           = DEBUG && true;
@@ -61,6 +65,21 @@ function debugLog(...args) {
     console.log(args); // eslint-disable-line no-console
   }
 }
+process.on('uncaughtException', (err) => {
+  debugLog('uncaughtException', err);
+  process.exit();
+});
+process.on('unhandledRejection', (reason, p) => {
+  debugLog('unhandledRejection', err);
+  process.exit();
+});
+
+
+
+// SQL JS adds its own uncaughtException handler  - so we need to register ours first.
+const SQL = require('sql.js');
+
+
 
 if (require('electron-squirrel-startup')) app.quit(); // eslint-disable-line global-require
 
@@ -93,6 +112,7 @@ function createWindow() {
 
   dataStore = new ScratchJRDataStore(win);
   win.setBrowserView(view);
+
 
   // and load the index.html of the app.
   win.loadURL(url.format({
@@ -139,7 +159,6 @@ app.on('ready', () => {
 		  label: 'File',
 		  submenu: [
 				{ label: 'Restore projects', click: dataStore.restoreProjects.bind(dataStore) },
-				{ role: 'toggledevtools' },
 				{ type: 'separator' },
 				{ role: 'quit' },
 		  ],
@@ -149,7 +168,6 @@ app.on('ready', () => {
       {
 		  label: 'File',
 		  submenu: [
-		  		{ role: 'toggledevtools' },
 				{ role: 'quit' },
 		  ],
 		}];
@@ -158,6 +176,10 @@ app.on('ready', () => {
 
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
+  
+  
+  
+
 });
 
 // Quit when all windows are closed.
@@ -198,6 +220,11 @@ app.on('activate', () => {
 ipcMain.on('io_getIsDebug', (event, arg) =>  { // eslint-disable-line  no-unused-vars
 	event.returnValue = DEBUG; 
 	
+});
+
+ipcMain.on('debugWriteLog', (event, args) =>  { // eslint-disable-line  no-unused-vars
+	debugLog(args); // send to our debugLog which will write to a file.
+	event.returnValue = true;
 });
 
 /**
@@ -387,6 +414,7 @@ ipcMain.on('io_gettextresource', (event, filename) => {
 */
 ipcMain.on('io_getAudioData', (event, audioName) => {
    if (DEBUG_FILEIO) debugLog('io_getAudioData - looking for', audioName);
+  
    
     // try fishing out of the app directory first - samples/pig.wav
   let filePath = dataStore.safeGetFilenameInAppDirectory(audioName, false);
@@ -464,7 +492,7 @@ class ScratchJRDataStore {
 
   getDatabaseManager() {
     if (!this.databaseManager) {
-      const scratchFolder = this.getScratchJRFolder();
+      const scratchFolder = ScratchJRDataStore.getScratchJRFolder();
       const scratchDBPath = path.join(scratchFolder, 'scratchjr.sqllite');
       this.databaseManager = new DatabaseManager(scratchDBPath);
       if (DEBUG_DATABASE) debugLog('DatabaseManager created');
@@ -474,7 +502,7 @@ class ScratchJRDataStore {
 
   /** returns whether there is a scratchjr.sqllite.restore in the Documents/ScratchJR folder */
   hasRestoreDatabase() {
-    const scratchFolder = this.getScratchJRFolder();
+    const scratchFolder = ScratchJRDataStore.getScratchJRFolder();
     const scratchRestoreDB = path.join(scratchFolder, 'scratchjr.sqllite.restore');
 
 
@@ -485,7 +513,7 @@ class ScratchJRDataStore {
         where you want to reset the projects to a certain configuration
     */
   restoreProjects() {
-  	 const scratchFolder = this.getScratchJRFolder();
+  	 const scratchFolder = ScratchJRDataStore.getScratchJRFolder();
 	 const scratchDBPath = path.join(scratchFolder, 'scratchjr.sqllite');
 	 const scratchRestoreDB = path.join(scratchFolder, 'scratchjr.sqllite.restore');
 	
@@ -523,7 +551,7 @@ class ScratchJRDataStore {
     if (!fullPath || fullPath.length === 0) return false;
     const testFolder = path.dirname(fullPath);
 
-    const scratchJRPath = this.getScratchJRFolder();
+    const scratchJRPath = ScratchJRDataStore.getScratchJRFolder();
     return (scratchJRPath === testFolder);
   }
 
@@ -534,7 +562,7 @@ class ScratchJRDataStore {
 
 
     /** getScratchJRFolder - returns ScratchJR folder in documents */
-  getScratchJRFolder() {
+  static getScratchJRFolder() {
     const documents = app.getPath('documents');
     if (!documents) throw new Error('could not get documents folder');
 
@@ -548,7 +576,7 @@ class ScratchJRDataStore {
 
      */
 
-  ensureDir(filePath) {
+  static ensureDir(filePath) {
     if (!fs.existsSync(filePath)) {
       fs.mkdirSync(filePath);
     }
@@ -930,3 +958,14 @@ class DatabaseManager {
   }
 
 }
+
+var logFile = fs.createWriteStream(path.join( ScratchJRDataStore.getScratchJRFolder(), 'debug.log'), { flags: 'a' });
+  // Or 'w' to truncate the file every time the process starts.
+var logStdout = process.stdout;
+
+console.log = function () {
+  logFile.write(util.format.apply(null, arguments) + '\n');
+  logStdout.write(util.format.apply(null, arguments) + '\n');
+}
+console.error = console.log;
+

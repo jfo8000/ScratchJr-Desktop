@@ -21,15 +21,16 @@ webFrame.setLayoutZoomLevelLimits(0, 0);
 
 
 const DEBUG =   remote.getCurrentWebContents().browserWindowOptions.isDebug;  // grab the DEBUG variable from main. This is passed through the BrowserWindow creation
-const DEBUG_FILEIO =  DEBUG && false;       // saving and loading user files
+const DEBUG_FILEIO =  DEBUG && true;       // saving and loading user files
 const DEBUG_RESOURCEIO = DEBUG && false;  // files from the application directory
 const DEBUG_NYI = DEBUG && true;          // stuff not yet implemented
 const DEBUG_DATABASE = DEBUG &&  false;    // database access
 const DEBUG_CAMERA = DEBUG && false;      // camera access
-const DEBUG_AUDIO = DEBUG && false;           // audio interface
+const DEBUG_AUDIO = DEBUG && true;           // audio interface
 const DEBUG_AUDIOMETER = DEBUG &&  false;  // volume feedback
+const DEBUG_WRITE_ERRLOG = DEBUG && true;
 
-
+let hasCapturedErrors;
 
 // Debugging the electron process:
 // note to use a debugger use 'npm run debugMain' and load up chrome://inspect
@@ -40,8 +41,20 @@ function debugLog(...args) {
     if (DEBUG) {
         console.log(...args); // eslint-disable-line no-console
     }
+    
+    if (DEBUG_WRITE_ERRLOG) {
+    	if (!hasCapturedErrors) {
+    		hasCapturedErrors = true;
+    		
+    		// install an error event handler to capture unhandled messages
+    		window.addEventListener("error", function (e) {
+			  	ipcRenderer.send('debugWriteLog', args);
+			})
+    	}
+    	return ipcRenderer.send('debugWriteLog', args);
+    }
 }
-debugLog('electronClient debugLog enabled');
+debugLog('electronClient debugLog enabled =======================');
 
 
 // reload the projects if the database has been reloaded off disk.
