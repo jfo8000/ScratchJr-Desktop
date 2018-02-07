@@ -25,4 +25,4 @@ test_script:
 - npm run lint
 
 build_script:
-- npm run make
+- npm run publish
