@@ -464,9 +464,9 @@ class AudioCapture {
 		this.errorHandler = null;
     }
 
-    getId () {
+    getId (isNewRecording) {
 
-        if (!this.id) {
+        if (isNewRecording || !this.id) {
      // uuid generator
             this.id =  'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
                 let r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
@@ -485,14 +485,13 @@ class AudioCapture {
                                 this.beginStartRecord.bind(this),
                                 this.onError.bind(this));
         }
-        return this.getId() + '.webm';
+        return this.getId(/*isNewRecording*/ true) + '.webm';
     }
 
     beginStartRecord(stream) {
     	if (!this.isRecordingPermitted) {
     		throw (new Error('Recording audio is turned off'));
     	}
-    
     	this.chunks = null;
         this.currentStream = stream;
         this.mediaRecorder = new MediaRecorder(stream);
@@ -632,7 +631,11 @@ class AudioCapture {
         }
 
         if (!this.audioProcessor) {
-            let processor = audioContext.createScriptProcessor(512, 1, 1);
+        
+           // "It is recommended for authors to not specify this buffer size and allow the implementation to pick a good
+    	   // buffer size to balance between latency and audio quality."
+           // https://developer.mozilla.org/en-US/docs/Web/API/AudioContext/createScriptProcessor
+            let processor = audioContext.createScriptProcessor((typeof AudioContext != 'undefined' ? null : 512), 1, 1);
             processor.onaudioprocess = this.processVolume.bind(this);
             processor.clipping = false;
             processor.lastClip = 0;
