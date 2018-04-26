@@ -1,0 +1,14 @@
+node_modules
+out
+**/.DS_Store
+src/.DS_Store
+src/.DS_Store
+src/app/.DS_Store
+src/app/inapp/.DS_Store
+src/app/src/.DS_Store
+src/app/src/editor/.DS_Store
+.DS_Store
+.DS_Store
+.DS_Store
+buglist.txt
+src/debug.log

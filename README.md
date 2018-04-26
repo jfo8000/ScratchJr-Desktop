@@ -16,7 +16,7 @@ This port makes use of Electron to host the ScratchJR HTML5 application on Mac a
 Electron (https://electronjs.org/) is a framework for creating native applications with web technologies like JavaScript, HTML, and CSS.   
 
 Electron Forge (https://electronforge.io/) stitches together several electron modules to provide easier support for using the latest version 
-of javascript, making dmg/exe files and installers. 
+of javascript, making dmg/exe files and installers.     
 
 
 ## Architecture Overview
@@ -94,8 +94,6 @@ There should be a listing there for the electron main process.
 Note between debugging sessions you may have to close and reopen this chrome://inspect window.
 
 
-
-
 ## Directory Structure and Projects
 This repository has the following directory structure:
 
@@ -107,6 +105,17 @@ This repository has the following directory structure:
 * <tt>docs/</tt> - Developer Documentation
 
 
+## Acknowledgments
+
+Thank you to the official Scratch team and their supporters.  Their contributions are listed here:
+https://github.com/LLK/scratchjr
+
+In addition, thank you to the folks working on Electron, ElectronForge, and Sql.js.
+
+Thank you to AppVeyor and Travis CL for providing Mac, Windows and Linux builds.
+
+
+## Disclaimers
 
 THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
