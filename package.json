@@ -1,7 +1,7 @@
 {
     "name": "ScratchJr",
     "productName": "ScratchJr",
-    "version": "1.2.2",
+    "version": "1.2.3",
     "description": "ScratchJr Desktop Edition",
     "main": "src/main.js",
     "scripts": {
@@ -135,12 +135,12 @@
         "babel-plugin-transform-async-to-generator": "^6.24.1",
         "babel-preset-env": "^1.6.1",
         "babel-preset-react": "^6.24.1",
-        "electron-forge": "^4.2.0",
+        "electron-forge": "^4.3.0",
         "electron-prebuilt-compile": "1.8.2-beta.3",
         "eslint": "^3.19.0",
         "eslint-config-airbnb": "^15.1.0",
-        "eslint-plugin-import": "^2.8.0",
+        "eslint-plugin-import": "^2.11.0",
         "eslint-plugin-jsx-a11y": "^5.1.1",
-        "eslint-plugin-react": "^7.5.1"
+        "eslint-plugin-react": "^7.7.0"
     }
 }
