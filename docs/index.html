@@ -10,7 +10,7 @@
 
     <title>Scratch JR for Desktop | Open Source Community Port</title>
     
-    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet">
         <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
  
@@ -18,8 +18,8 @@
     <link href="pricing.css" rel="stylesheet">
     <style>
         .standard-indent {
-            margin-left: 40px;
-              margin-right: 40px;
+            margin-left: 6em;
+              margin-right: 6em;
         }
        
        .bg-blue {
@@ -27,7 +27,15 @@
          padding: 4em;
        }
        .title {
-        font-family: 'Gloria Hallelujah', cursive;
+        font-family: 'Architects Daughter', cursive;
+       }
+       h1, h2, h3, h4, h5 {
+        font-family: 'Architects Daughter', cursive;
+       
+       }
+       footer {
+        padding: 2em;
+        background-color: #f0f0f0;
        }
         .orangeBar {
             background-color: #f5a322;
@@ -65,7 +73,6 @@
            <br/>
            <br/>
            
-           Note: this app could be also used in offline mode (without internet connection).
            
            
            
@@ -96,7 +103,7 @@
             <div style='height: 300px'>
                 <img src='./scratchformac.png' width='400px'></img>
             </div>
-            By downloading this software, you agree to the <a href='https://github.com/jfo8000/ScratchJr-Desktop/blob/master/LICENSE'>terms and conditions of the license</a>.
+            By downloading this software, you agree to the <a href='https://github.com/jfo8000/ScratchJr-Desktop/blob/master/LICENSE'>terms and conditions of the MIT license</a>.
           
             <button type="button" class="btn btn-lg btn-block btn-primary">Download (Mac)</button>
           </div>
@@ -110,7 +117,7 @@
             <div style='height: 300px'>
              <img src='./scratchjrwin.png' width='400px'></img>
             </div>
-            By downloading this software, you agree to the <a href='https://github.com/jfo8000/ScratchJr-Desktop/blob/master/LICENSE'>terms and conditions of the license</a>.
+            By downloading this software, you agree to the <a href='https://github.com/jfo8000/ScratchJr-Desktop/blob/master/LICENSE'>terms and conditions of the MIT license</a>.
           
             <button type="button" class="btn btn-lg btn-block btn-primary">Download (Win)</button>
           </div>
@@ -121,7 +128,8 @@
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
       <h1 class="display-4">The nitty gritty </h1>
        <div class='text-left standard-indent'>
-        <h5>Same app, new platform.</h5>
+       <br/>
+        <h3>Same app, new platform.</h3>
         
           To port to the desktop, a small database and filesystem layer was rewritten, as well as access to video and sound. 
           
@@ -130,14 +138,32 @@
            <a href="https://electronjs.org/">Electron</a> for the app hosting, the original html source of ScratchJR and <a href="https://github.com/kripken/sql.js/">SQL.js</a> for the project database.
            Electron is like having your own chrome browser to run one html webpage.   And in our case, that webpage is ScratchJR.
          
-         <br/><br/>
-           <h5>Thanks</h5>
+         <br/><br/><br/>    
+         
+            <h3>Offline mode</h3>
+        Once installed, this app should not require an internet connection to work.
+       
+         <br/><br/><br/>    
+         
+             <h3>Where's the data?</h3>
+        All projects are stored locally on the machine inside of a file (which happens to be a sql lite database.)
+        
+        
+        Inside your documents/ScratchJr folder, there will be a scratchjr.sqllite file.  If you copy this to scratchjr.sqllite.restore
+        you will get a 'restore' option.  
+        
+        The database can be saved and restored for classroom use.  
+           <br/><br/><br/>    
+         
+       
+           <h3>Thanks</h3>
            
             Thank you to the  <a href='https://github.com/LLK/scratchjr'>official Scratch Jr team and their supporters</a>.
             
 In addition, thank you to the folks working on Electron, ElectronForge, and Sql.js.  Thank you to AppVeyor and Travis CL for contributing free Mac, Windows and Linux builds.
 <br/> <br/>
 Finally, a special thank you to <a href="https://www.scopeiteducation.edu.au/">ScopeIT Education</a> for donating their technical expertise to this project.
+<br/> <br/>
 
 
          
@@ -148,15 +174,37 @@ Finally, a special thank you to <a href="https://www.scopeiteducation.edu.au/">S
     
   
     </div>
-      <footer class="pt-4 my-md-5 pt-md-5 border-top">
-           <div class='text-left standard-indent'>
-            More info about ScratchJr can be found <a href='https://www.scratchjr.org/about/info'> here</a>.
+  
+  <footer>
+  <div class="row">
+          <div class="col-12 col-md">
+              You are viewing an unoffical Scratch Jr for Desktop site.<br/><br/> Go to the
+              <a href='https://www.scratchjr.org/'> Scratch Jr Official website</a>.
+            <small class="d-block mb-3 text-muted">© 2017-2018</small>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Scratch Jr</h5>
+            <ul class="list-unstyled text-small">
+              <li> <a href='https://www.scratchjr.org/'>Scratch Jr Official page</a></li>
+              <li><a href='https://www.scratchjr.org/learn/interface'>Learn Scratch Jr</a></li>
+              <li><a href='https://www.scratchjr.org/teach'>Teach Scratch Jr</a></li>
+            </ul>
+          </div>
+          <div class="col-6 col-md">
+            <h5>Scratch Jr for Desktop</h5>
+            <ul class="list-unstyled text-small">
+              <li><a class="text-muted" href="#">Download</a></li>
+              <li><a class="text-muted" href="https://github.com/jfo8000/ScratchJr-Desktop/">View on Github</a></li>
+            </ul>
+          </div>
+        
         </div>
-      </footer>
+  
+    
       </div>
     </div>
 
-
+</footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
