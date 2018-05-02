@@ -1,10 +1,11 @@
 ## Downloads
 
-To download this app to your computer, please visit this page:
-(https://jfo8000.github.io/ScratchJr-Desktop/)
+[Download ScratchJr for Desktop](https://jfo8000.github.io/ScratchJr-Desktop/)
 
 
-## Overview
+
+
+## The geeky stuff
 
 This repository contains a port of ScratchJr for Desktop. 
 
