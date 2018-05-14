@@ -39,6 +39,8 @@ export default class Library {
         inner.setAttribute('id', 'asssetsview');
         var div = newHTML('div', 'scrollarea', inner);
         div.setAttribute('id', 'scrollarea');
+        
+        Library.resizeScroll();
     }
 
     static open (libType) {
@@ -53,6 +55,8 @@ export default class Library {
         Library.clean();
         Library.createScrollPanel();
         Library.addThumbnails(type);
+
+
         window.onmousedown = undefined;
         window.onmouseup = undefined;
         document.onmousemove = undefined;
@@ -477,6 +481,7 @@ export default class Library {
         var w = Math.min(getDocumentWidth(), frame.offsetWidth);
         var h = Math.max(getDocumentHeight(), frame.offsetHeight);
         var dx = w - 20 * scaleMultiplier;
+        
         setProps(gn('scrollarea').style, {
             width: dx + 'px',
             height: (h - 120 * scaleMultiplier) + 'px'

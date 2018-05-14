@@ -681,6 +681,52 @@ export default class ScratchJr {
         ScratchJr.keyboardAddKey(pad, '0', 'onekey');
         ScratchJr.keyboardAddKey(pad, undefined, 'onekey delete');
     //  var keym = newHTML("div", 'onkey' ,pad);
+   
+       
+        // special request bugfix - handle keyboard input in the number window.
+    	document.addEventListener('keydown', ScratchJr.onNumberKeyDown);
+    	 	
+    }
+    
+    static isNumberPadKeyCode(e) {
+    	return (isFinite(event.key) || e.keyCode == 8 /*delete*/ || e.keyCode === 46 /*backspace*/);
+    }
+    static onNumberKeyDown(e) {
+    	
+    	
+    	if (ScratchJr.isNumberPadKeyCode(e) && document.getElementsByClassName('picokeyboard on').length > 0) {
+    	
+    	    e.preventDefault();
+			e.stopPropagation();
+			if (e.keyCode == 8 /*delete*/ || e.keyCode === 46 /*backspace*/) {
+				ScratchJr.numEditDelete();
+			} 
+			else {
+				const newChar = e.key;
+				var input = activeFocus.input;
+			
+				var val = input.textContent;
+				if (editfirst) {
+					editfirst = false;
+					val = '0';
+				}
+				
+				if (val == '0') {
+					val = newChar;
+				} else {
+					val += newChar;
+				}
+				if ((Number(val).toString() != 'NaN') && ((Number(val) > 99) || (Number(val) < -99))) {
+					ScratchAudio.sndFX('boing.wav');
+				} else {
+					activeFocus.setValue(val);
+
+				}
+			
+			}
+		
+    	}
+    	
     }
 
     static eatEvent (e) {
