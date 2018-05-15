@@ -700,8 +700,7 @@ export default class ScratchJr {
 			e.stopPropagation();
 			if (e.keyCode == 8 /*delete*/ || e.keyCode === 46 /*backspace*/) {
 				ScratchJr.numEditDelete();
-			} 
-			else {
+			} else {
 				const newChar = e.key;
 				var input = activeFocus.input;
 			
