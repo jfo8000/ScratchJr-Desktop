@@ -54,7 +54,7 @@ function indexFirstTime () {
    
     setTimeout(function () {
         indexLoadOptions();
-    }, /*SPLASH SCREEN LOAD DELAY*/3500);
+    }, /*SPLASH SCREEN LOAD DELAY*/3000);
     
 }
 
