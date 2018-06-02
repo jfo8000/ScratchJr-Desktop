@@ -297,26 +297,30 @@ class ElectronDesktopInterface {
     /** called when the tickmark is chosen in the record dialog*/
     recordsound_recordclose(keep) {
 
-        let electronDesktopInterface =  this;
+		try {
+			let electronDesktopInterface =  this;
 
-        let audioCaptureElement = this.getAudioCaptureElement();
+			let audioCaptureElement = this.getAudioCaptureElement();
 
-        if (keep === 'YES') {
+			if (keep === 'YES') {
 
-            let blob = audioCaptureElement.captureRecordingAsBlob();
-            if (blob) {
-				let filename = audioCaptureElement.getId();
+				let blob = audioCaptureElement.captureRecordingAsBlob();
+				if (blob) {
+					let filename = audioCaptureElement.getId();
 
-				let fileReader = new FileReader();
-				fileReader.onload = function () {
-					// saving new sound...  will save as a webm file.
-					electronDesktopInterface.io_setmedianame(fileReader.result, filename, 'webm');
-					electronDesktopInterface.loadSoundFromDataURI(filename + '.webm', fileReader.result);
+					let fileReader = new FileReader();
+					fileReader.onload = function () {
+						// saving new sound...  will save as a webm file.
+						electronDesktopInterface.io_setmedianame(fileReader.result, filename, 'webm');
+						electronDesktopInterface.loadSoundFromDataURI(filename + '.webm', fileReader.result);
+			
+					};
+					fileReader.readAsDataURL(blob);
+				}
 
-				};
-				fileReader.readAsDataURL(blob);
-            }
-
+			}
+        } catch(e) {
+    		debugLog('Error saving sound', e);
         }
 
     }
