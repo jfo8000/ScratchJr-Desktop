@@ -1,7 +1,7 @@
 ## Official disclaimer
 Scratch and ScratchJr are trademarks of Massachusetts Institute of Technology, which does not sponsor, endorse, or authorize this content. See scratchjr.org for more information.
 
-## Downloads -- coming soon
+## Downloads 
 [Download ScratchJr for Desktop](https://jfo8000.github.io/ScratchJr-Desktop/)
 
 
