@@ -319,7 +319,7 @@ class ElectronDesktopInterface {
 				}
 
 			}
-        } catch(e) {
+        } catch (e) {
     		debugLog('Error saving sound', e);
         }
 
