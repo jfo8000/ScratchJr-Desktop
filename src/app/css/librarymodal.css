@@ -178,10 +178,10 @@ hr.bigdivide{
 .assetbox {
     display: inline-block;
     vertical-align: top;
-    width: ${css_vh(17.84)};
-    height: ${css_vh(14.45)};
-    margin: ${css_vh(0.65)};
-    padding: ${css_vh(0.65)};
+    width: 140px;
+    height: 140px;
+    margin: 12px;
+    padding: 12px;
 }
 
 .assetbox.off {
