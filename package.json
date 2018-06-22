@@ -9,6 +9,8 @@
         "debugMain": "electron-forge start -i",
         "package": "electron-forge package",
         "make": "electron-forge make",
+        "make64": "electron-forge make --arch=x64",
+        "make32": "electron-forge make --arch=ia32",
         "publish": "electron-forge publish",
         "lint": "eslint src --color"
     },
