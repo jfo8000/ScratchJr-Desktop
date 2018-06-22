@@ -25,5 +25,4 @@ test_script:
 - npm run lint
 
 build_script:
-- npm run make64
-- npm run make32
+- npm run makeAll

@@ -11,6 +11,7 @@
         "make": "electron-forge make",
         "make64": "electron-forge make --arch=x64",
         "make32": "electron-forge make --arch=ia32",
+        "makeAll": "electron-forge make --arch=ia32,x64",
         "publish": "electron-forge publish",
         "lint": "eslint src --color"
     },
