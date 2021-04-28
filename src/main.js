@@ -100,7 +100,8 @@ function createWindow() {
       minHeight: 800,
       minWidth: 1000,
       customVar: 'elephants',
-      isDebug: DEBUG
+      isDebug: DEBUG,
+      autoHideMenuBar: true
     });
 
   const view = new BrowserView({
@@ -145,7 +146,6 @@ function createWindow() {
   });
 }
 
-
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
@@ -169,7 +169,12 @@ app.on('ready', () => {
       {
 		  label: 'File',
 		  submenu: [
-				{ role: 'quit' },
+        { role: 'quit' },
+        {
+          label: 'Toggle full screen',
+          click: () => { win.setFullScreen(!win.isFullScreen()); },
+          accelerator: 'CmdOrCtrl+f'
+        },
 		  ],
 		}];
   }  
@@ -970,4 +975,3 @@ console.log = function () {  // eslint-disable-line no-console
 };
 
 console.error = console.log;  // eslint-disable-line no-console
-
