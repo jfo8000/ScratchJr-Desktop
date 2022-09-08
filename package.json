@@ -130,7 +130,7 @@
         "electron-squirrel-startup": "^1.0.0",
         "intl": "^1.2.5",
         "intl-messageformat": "^2.2.0",
-        "jszip": "^3.1.5",
+        "jszip": "^3.7.0",
         "snapsvg": "^0.5.1",
         "sql.js": "^0.4.0",
         "hoek": "^4.2.1"
